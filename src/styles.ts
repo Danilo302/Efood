@@ -15,10 +15,6 @@ export const GlobalCss = createGlobalStyle`
     text-decoration: none;
 }
 
-  body {
-
-  }
-
   .container {
     max-width: 1024px;
     width: 100%;

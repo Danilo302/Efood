@@ -1,6 +1,6 @@
 import RestaurantClass from '../../models/Restaurant'
 import Restaurant from '../Restaurant'
-import { List } from './styles'
+import { List, SectionContainer } from './styles'
 
 type Props = {
   restaurants: RestaurantClass[]
@@ -8,7 +8,7 @@ type Props = {
 
 const ListRestaurant = ({ restaurants }: Props) => {
   return (
-    <section>
+    <SectionContainer>
       <List className="container">
         {restaurants.map((restaurant) => (
           <li key={restaurant.id}>
@@ -22,7 +22,7 @@ const ListRestaurant = ({ restaurants }: Props) => {
           </li>
         ))}
       </List>
-    </section>
+    </SectionContainer>
   )
 }
 
