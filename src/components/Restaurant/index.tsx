@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import estrela from '../../assets/images/estrela.png'
 import { Card, Description, Info, Tags, Title } from './styles'
 import Tag from '../Tag'
@@ -29,11 +30,11 @@ const Restaurant = ({ title, score, description, image, tags }: Props) => (
         </div>
       </div>
       <Description>{description}</Description>
-      <a href="#">
+      <Link to="/restaurante">
         <div>
           <Tag size="big">Saiba mais</Tag>
         </div>
-      </a>
+      </Link>
     </Info>
   </Card>
 )

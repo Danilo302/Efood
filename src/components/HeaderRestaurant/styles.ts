@@ -8,6 +8,10 @@ export const HeaderContainer = styled.div`
   color: ${cores.red};
   padding: 40px 0 64px 0;
   font-weight: bold;
+
+  h3 {
+    color: ${cores.red};
+  }
 `
 export const ImgContainer = styled.div`
   width: 100%;

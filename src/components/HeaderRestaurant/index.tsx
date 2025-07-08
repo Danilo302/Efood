@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import logo from '../../assets/images/logo.png'
 import fundo from '../../assets/images/fundo2.png'
 import image from '../../assets/images/image2.png'
@@ -7,7 +8,9 @@ const HeaderRestaurant = () => (
   <header>
     <div style={{ backgroundImage: `url(${fundo})` }}>
       <HeaderContainer className="container">
-        <h3>Restaurantes</h3>
+        <Link to="/">
+          <h3>Restaurantes</h3>
+        </Link>
         <img src={logo} />
         <span>0 produto(s) no carrinho</span>
       </HeaderContainer>
