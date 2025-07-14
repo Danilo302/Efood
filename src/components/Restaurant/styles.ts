@@ -2,12 +2,15 @@ import styled from 'styled-components'
 import { cores } from '../../styles'
 
 export const Card = styled.div`
-  width: 472px;
+  max-width: 472px;
   color: ${cores.red};
   position: relative;
 
-  img {
+  > img {
     display: block;
+    width: 100%;
+    height: 217px;
+    object-fit: cover;
   }
 `
 export const Info = styled.div`
