@@ -5,13 +5,24 @@ export const FoodItem = styled.li`
   background-color: ${cores.red};
   max-width: 320px;
   color: ${cores.branco};
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
   img {
-    margin: 8px;
+    padding: 8px;
+    width: 100%;
+    height: 167px;
+    display: block;
+    object-fit: cover;
   }
 `
 export const Descripton = styled.div`
   padding: 0 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 
   * {
     margin-bottom: 8px;

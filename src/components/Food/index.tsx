@@ -10,8 +10,10 @@ const Food = ({ title, description, image }: Props) => (
   <FoodItem>
     <img src={image} />
     <Descripton>
-      <h4>{title}</h4>
-      <p>{description}</p>
+      <div>
+        <h4>{title}</h4>
+        <p>{description}</p>
+      </div>
       <Btn>Adicionar ao carrinho</Btn>
     </Descripton>
   </FoodItem>
