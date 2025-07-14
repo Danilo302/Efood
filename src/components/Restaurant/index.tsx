@@ -9,9 +9,10 @@ type Props = {
   description: string
   image: string
   tags: string[]
+  id: number
 }
 
-const Restaurant = ({ title, score, description, image, tags }: Props) => {
+const Restaurant = ({ title, score, description, image, tags, id }: Props) => {
   const getDescricao = (descricao: string) => {
     if (descricao.length > 260) {
       return descricao.slice(0, 260) + '...'
@@ -38,7 +39,7 @@ const Restaurant = ({ title, score, description, image, tags }: Props) => {
           </div>
         </div>
         <Description>{getDescricao(description)}</Description>
-        <Link to="/restaurante">
+        <Link to={`/restaurante/${id}`}>
           <div>
             <Tag size="big">Saiba mais</Tag>
           </div>

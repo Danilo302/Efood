@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom'
 import logo from '../../assets/images/logo.png'
 import fundo from '../../assets/images/fundo2.png'
-import image from '../../assets/images/image2.png'
 import { HeaderContainer, ImgContainer } from './styles'
 
-const HeaderRestaurant = () => (
+type Props = {
+  image: string
+  tipo: string
+  titulo: string
+}
+
+const HeaderRestaurant = ({ image, tipo, titulo }: Props) => (
   <header>
     <div style={{ backgroundImage: `url(${fundo})` }}>
       <HeaderContainer className="container">
@@ -21,8 +26,8 @@ const HeaderRestaurant = () => (
       }}
     >
       <div className="container">
-        <h2>Italiana</h2>
-        <h1>La Dolce Vita Trattoria</h1>
+        <h2>{tipo}</h2>
+        <h1>{titulo}</h1>
       </div>
     </ImgContainer>
   </header>

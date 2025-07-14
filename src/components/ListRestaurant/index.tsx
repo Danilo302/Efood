@@ -13,6 +13,7 @@ const ListRestaurant = ({ restaurants }: Props) => {
         {restaurants.map((restaurant) => (
           <li key={restaurant.id}>
             <RestaurantContent
+              id={restaurant.id}
               title={restaurant.titulo}
               description={restaurant.descricao}
               image={restaurant.capa}
