@@ -16,18 +16,15 @@ type Props = {
 
 const ListFoods = ({ foods }: Props) => {
   return (
-    <section>
-      <List className="container">
-        {foods.map((food) => (
-          <Food
-            title={food.nome}
-            description={food.descricao}
-            image={food.foto}
-            key={food.id}
-          />
-        ))}
-      </List>
-    </section>
+    <>
+      <section>
+        <List className="container">
+          {foods.map((food) => (
+            <Food key={food.id} item={food} />
+          ))}
+        </List>
+      </section>
+    </>
   )
 }
 
