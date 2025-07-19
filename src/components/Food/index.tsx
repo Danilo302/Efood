@@ -8,22 +8,15 @@ import {
   ModelInfo
 } from './styles'
 import close from '../../assets/images/close.png'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootReducer } from '../../store'
-import { open } from '../../store/reducers/cart'
+import { useDispatch } from 'react-redux'
+import { open, add } from '../../store/reducers/cart'
+import { Cardapio } from '../../pages/Home'
 
 type Props = {
-  item: {
-    foto: string
-    preco: number
-    id: number
-    nome: string
-    descricao: string
-    porcao: string
-  }
+  item: Cardapio
 }
 
-const formataPreco = (preco = 0) => {
+export const formataPreco = (preco = 0) => {
   return new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL'
@@ -32,11 +25,13 @@ const formataPreco = (preco = 0) => {
 
 const Food = ({ item }: Props) => {
   const [isVisible, setIsVisible] = useState(false)
-  const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
 
   const dispatch = useDispatch()
-  const openCart = () => {
+
+  const addCart = () => {
+    dispatch(add(item))
     dispatch(open())
+    setIsVisible(false)
   }
 
   return (
@@ -67,7 +62,7 @@ const Food = ({ item }: Props) => {
               <h4>{item.nome}</h4>
               <p>{item.descricao}</p> <br />
               <p>Serve: {item.porcao}</p>
-              <Btn onClick={openCart}>
+              <Btn onClick={addCart}>
                 Adicionar ao carrinho - {formataPreco(item.preco)}
               </Btn>
             </div>

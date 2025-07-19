@@ -19,7 +19,7 @@ const RestaurantPage = () => {
         tipo={restaurante.tipo}
         titulo={restaurante.titulo}
       />
-      <ListFoods foods={restaurante?.cardapio} />
+      <ListFoods cardapio={restaurante.cardapio} />
       <Cart />
     </>
   )

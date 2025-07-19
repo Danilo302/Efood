@@ -1,25 +1,17 @@
+import { Cardapio } from '../../pages/Home'
 import Food from '../Food'
 import { List } from './styles'
 
 type Props = {
-  foods: [
-    {
-      foto: string
-      preco: number
-      id: number
-      nome: string
-      descricao: string
-      porcao: string
-    }
-  ]
+  cardapio: Cardapio[]
 }
 
-const ListFoods = ({ foods }: Props) => {
+const ListFoods = ({ cardapio }: Props) => {
   return (
     <>
       <section>
         <List className="container">
-          {foods.map((food) => (
+          {cardapio.map((food) => (
             <Food key={food.id} item={food} />
           ))}
         </List>
