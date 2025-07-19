@@ -8,6 +8,9 @@ import {
   ModelInfo
 } from './styles'
 import close from '../../assets/images/close.png'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootReducer } from '../../store'
+import { open } from '../../store/reducers/cart'
 
 type Props = {
   item: {
@@ -29,6 +32,12 @@ const formataPreco = (preco = 0) => {
 
 const Food = ({ item }: Props) => {
   const [isVisible, setIsVisible] = useState(false)
+  const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
+
+  const dispatch = useDispatch()
+  const openCart = () => {
+    dispatch(open())
+  }
 
   return (
     <>
@@ -58,7 +67,9 @@ const Food = ({ item }: Props) => {
               <h4>{item.nome}</h4>
               <p>{item.descricao}</p> <br />
               <p>Serve: {item.porcao}</p>
-              <Btn>Adicionar ao carrinho - {formataPreco(item.preco)}</Btn>
+              <Btn onClick={openCart}>
+                Adicionar ao carrinho - {formataPreco(item.preco)}
+              </Btn>
             </div>
           </ModelInfo>
         </ModalContent>
