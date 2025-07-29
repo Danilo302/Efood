@@ -3,6 +3,7 @@ import ListFoods from '../../components/ListFoods'
 import { useParams } from 'react-router-dom'
 import Cart from '../../components/Cart'
 import { useGetFeaturedMenuQuery } from '../../services/api'
+import Checkout from '../../components/Checkout'
 
 const RestaurantPage = () => {
   const { id } = useParams()
@@ -21,6 +22,7 @@ const RestaurantPage = () => {
       />
       <ListFoods cardapio={restaurante.cardapio} />
       <Cart />
+      <Checkout />
     </>
   )
 }

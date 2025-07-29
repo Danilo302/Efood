@@ -28,29 +28,38 @@ const Cart = () => {
     <CartContainer className={isOpen ? 'is-open' : ''}>
       <Overlay onClick={closeCart} />
       <Sidebar>
-        <ul>
-          {items.map((item) => (
-            <ItemCart key={item.id}>
-              <img src={item.foto} alt={item.nome} />
-              <div>
-                <h4>{item.nome}</h4>
-                <p>{formataPreco(item.preco)}</p>
-                <div>
-                  <img
-                    onClick={() => removeItem(item.id)}
-                    src={deleteCart}
-                    alt={`Clique para excluir ${item.nome}do carrinho.`}
-                  />
-                </div>
-              </div>
-            </ItemCart>
-          ))}
-        </ul>
-        <Price>
-          <p>Valor total</p>
-          <span>{formataPreco(getTotalPrice())}</span>
-        </Price>
-        <Btn>Continuar com a entrega</Btn>
+        {items.length > 0 ? (
+          <>
+            <ul>
+              {items.map((item) => (
+                <ItemCart key={item.id}>
+                  <img src={item.foto} alt={item.nome} />
+                  <div>
+                    <h4>{item.nome}</h4>
+                    <p>{formataPreco(item.preco)}</p>
+                    <div>
+                      <img
+                        onClick={() => removeItem(item.id)}
+                        src={deleteCart}
+                        alt={`Clique para excluir ${item.nome}do carrinho.`}
+                      />
+                    </div>
+                  </div>
+                </ItemCart>
+              ))}
+            </ul>
+            <Price>
+              <p>Valor total</p>
+              <span>{formataPreco(getTotalPrice())}</span>
+            </Price>
+            <Btn>Continuar com a entrega</Btn>
+          </>
+        ) : (
+          <p>
+            O carrinho está vazio, adicione pelo menos um item para continuar a
+            compra
+          </p>
+        )}
       </Sidebar>
     </CartContainer>
   )
