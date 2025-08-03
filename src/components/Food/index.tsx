@@ -11,16 +11,10 @@ import close from '../../assets/images/close.png'
 import { useDispatch } from 'react-redux'
 import { open, add } from '../../store/reducers/cart'
 import { Cardapio } from '../../pages/Home'
+import { formataPreco } from '../../utils'
 
 type Props = {
   item: Cardapio
-}
-
-export const formataPreco = (preco = 0) => {
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(preco)
 }
 
 const Food = ({ item }: Props) => {

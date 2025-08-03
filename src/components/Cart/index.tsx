@@ -2,9 +2,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Btn } from '../Food/styles'
 import { CartContainer, ItemCart, Overlay, Price, Sidebar } from './styles'
 import { RootReducer } from '../../store'
-import { close, remove } from '../../store/reducers/cart'
-import { formataPreco } from '../Food'
+import { close, OpenCheckout, remove } from '../../store/reducers/cart'
 import deleteCart from '../../assets/images/delete.png'
+import { formataPreco, getTotalPrice } from '../../utils'
 
 const Cart = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
@@ -18,10 +18,9 @@ const Cart = () => {
     dispatch(remove(id))
   }
 
-  const getTotalPrice = () => {
-    return items.reduce((acumulador, valorAtual) => {
-      return (acumulador += valorAtual.preco)
-    }, 0)
+  const openCheckout = () => {
+    dispatch(OpenCheckout())
+    dispatch(close())
   }
 
   return (
@@ -50,9 +49,9 @@ const Cart = () => {
             </ul>
             <Price>
               <p>Valor total</p>
-              <span>{formataPreco(getTotalPrice())}</span>
+              <span>{formataPreco(getTotalPrice(items))}</span>
             </Price>
-            <Btn>Continuar com a entrega</Btn>
+            <Btn onClick={openCheckout}>Continuar com a entrega</Btn>
           </>
         ) : (
           <p>
