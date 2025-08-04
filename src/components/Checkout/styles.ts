@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { cores } from '../../styles'
 
-export const FormContainer = styled.form`
+export const FormContainer = styled.div`
   padding-top: 16px;
 
   h3 {
