@@ -39,6 +39,12 @@ export const FormContainer = styled.div`
   & .small-container {
     max-width: 87px;
   }
+
+  p {
+    font-size: 14px;
+    line-height: 22px;
+    margin-bottom: 24px;
+  }
 `
 export const Btns = styled.div`
   flex-direction: column;
