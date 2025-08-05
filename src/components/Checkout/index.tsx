@@ -3,9 +3,9 @@ import { CartContainer, Overlay, Sidebar } from '../Cart/styles'
 import { Btns, FormContainer } from './styles'
 import { RootReducer } from '../../store'
 import { Btn } from '../Food/styles'
-import { OpenCheckout, open } from '../../store/reducers/cart'
+import { OpenCheckout, clear, open } from '../../store/reducers/cart'
 import { formataPreco, getTotalPrice } from '../../utils'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { usePurchaseMutation } from '../../services/api'
@@ -80,8 +80,6 @@ const Checkout = () => {
           }
         }
       })
-
-      console.log('Pedido realizado com sucesso!', data)
     }
   })
 
@@ -101,15 +99,28 @@ const Checkout = () => {
       form.errors.cep ||
       form.errors.number
     ) {
-      console.log(form.errors)
+      alert(
+        'Preencha todos os campos obrigatórios corretamente antes de prosseguir com o pagamento.'
+      )
     } else {
       setIsPayment(true)
     }
   }
 
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(clear())
+    }
+  }, [dispatch, isSuccess])
+
   return (
     <CartContainer className={isOpenCheckout ? 'is-open' : ''}>
-      <Overlay />
+      <Overlay
+        onClick={() => {
+          dispatch(OpenCheckout())
+          setIsPayment(false)
+        }}
+      />
       <Sidebar>
         {isSuccess && data ? (
           <FormContainer>
@@ -129,7 +140,15 @@ const Checkout = () => {
               agradável experiência gastronômica. Bom apetite!
             </p>
 
-            <Btn type="button">Concluir</Btn>
+            <Btn
+              type="button"
+              onClick={() => {
+                dispatch(OpenCheckout())
+                setIsPayment(false)
+              }}
+            >
+              Concluir
+            </Btn>
           </FormContainer>
         ) : (
           <form onSubmit={form.handleSubmit}>
