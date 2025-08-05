@@ -55,14 +55,28 @@ const Checkout = () => {
     }
   })
 
-  const getErrorMessage = (fieldName: string, message?: string) => {
+  const checkHasError = (fieldName: string) => {
     const isChanged = fieldName in form.touched
     const isInvalid = fieldName in form.errors
+    const hasError = isChanged && isInvalid
 
-    if (isChanged && isInvalid) return message
-    return ''
+    //setIsError(hasError)
+    return hasError
   }
 
+  const toPayment = () => {
+    if (
+      form.errors.recipientName ||
+      form.errors.address ||
+      form.errors.city ||
+      form.errors.cep ||
+      form.errors.number
+    ) {
+      console.log(form.errors)
+    } else {
+      setIsPayment(true)
+    }
+  }
   return (
     <CartContainer className={isOpenCheckout ? 'is-open' : ''}>
       <Overlay />
@@ -82,6 +96,7 @@ const Checkout = () => {
                 value={form.values.nameCard}
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
+                className={checkHasError('nameCard') ? 'error' : ''}
               />
 
               <div>
@@ -94,6 +109,7 @@ const Checkout = () => {
                     value={form.values.numberCard}
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
+                    className={checkHasError('numberCard') ? 'error' : ''}
                   />
                 </div>
 
@@ -106,6 +122,7 @@ const Checkout = () => {
                     value={form.values.cvv}
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
+                    className={checkHasError('cvv') ? 'error' : ''}
                   />
                 </div>
               </div>
@@ -120,6 +137,7 @@ const Checkout = () => {
                     value={form.values.month}
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
+                    className={checkHasError('month') ? 'error' : ''}
                   />
                 </div>
 
@@ -132,12 +150,13 @@ const Checkout = () => {
                     value={form.values.year}
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
+                    className={checkHasError('year') ? 'error' : ''}
                   />
                 </div>
               </div>
 
               <Btns>
-                <Btn>Finalizar pagamento</Btn>
+                <Btn type="submit">Finalizar pagamento</Btn>
                 <Btn type="button" onClick={() => setIsPayment(false)}>
                   Voltar para a edição de endereço
                 </Btn>
@@ -155,6 +174,7 @@ const Checkout = () => {
                 value={form.values.recipientName}
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
+                className={checkHasError('recipientName') ? 'error' : ''}
               />
 
               <label htmlFor="address">Endereço</label>
@@ -165,6 +185,7 @@ const Checkout = () => {
                 value={form.values.address}
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
+                className={checkHasError('address') ? 'error' : ''}
               />
 
               <label htmlFor="city">Cidade</label>
@@ -175,6 +196,7 @@ const Checkout = () => {
                 value={form.values.city}
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
+                className={checkHasError('city') ? 'error' : ''}
               />
 
               <div>
@@ -187,6 +209,7 @@ const Checkout = () => {
                     value={form.values.cep}
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
+                    className={checkHasError('cep') ? 'error' : ''}
                   />
                 </div>
 
@@ -199,6 +222,7 @@ const Checkout = () => {
                     value={form.values.number}
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
+                    className={checkHasError('number') ? 'error' : ''}
                   />
                 </div>
               </div>
@@ -211,10 +235,11 @@ const Checkout = () => {
                 value={form.values.complement}
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
+                className={checkHasError('complement') ? 'error' : ''}
               />
 
               <Btns>
-                <Btn onClick={() => setIsPayment(true)}>
+                <Btn type="button" onClick={toPayment}>
                   Continuar com o pagamento
                 </Btn>
                 <Btn type="button" onClick={returnToCart}>

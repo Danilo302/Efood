@@ -18,9 +18,13 @@ export const FormContainer = styled.div`
 
   input {
     background-color: ${cores.branco};
-    border: none;
+    border: 2px solid transparent;
     width: 100%;
     height: 32px;
+
+    &.error {
+      border: 2px solid #fe0b07ff;
+    }
   }
 
   > div {
