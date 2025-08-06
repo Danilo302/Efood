@@ -174,6 +174,14 @@ const Checkout = () => {
             onSubmit={async (e) => {
               e.preventDefault()
               await form.handleSubmit()
+
+              if (Object.keys(form.errors).length > 0) {
+                alert(
+                  'Corrija os erros no formulário antes de finalizar o pagamento.'
+                )
+                setReqSuccess(false)
+                return
+              }
               setReqSuccess(true)
             }}
           >
@@ -256,7 +264,7 @@ const Checkout = () => {
 
                 <Btns>
                   <Btn type="submit" disabled={isLoading}>
-                    Finalizar pagamento
+                    {isLoading ? 'Processando...' : 'Finalizar pagamento'}
                   </Btn>
                   <Btn type="button" onClick={() => setIsPayment(false)}>
                     Voltar para a edição de endereço
