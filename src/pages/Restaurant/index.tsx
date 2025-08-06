@@ -1,16 +1,22 @@
+import { useParams } from 'react-router-dom'
+
 import HeaderRestaurant from '../../components/HeaderRestaurant'
 import ListFoods from '../../components/ListFoods'
-import { useParams } from 'react-router-dom'
 import Cart from '../../components/Cart'
 import { useGetFeaturedMenuQuery } from '../../services/api'
 import Checkout from '../../components/Checkout'
+import Loader from '../../components/Loader'
+
+type RestaurantParams = {
+  id: string
+}
 
 const RestaurantPage = () => {
-  const { id } = useParams()
-  const { data: restaurante } = useGetFeaturedMenuQuery(id!)
+  const { id } = useParams() as RestaurantParams
+  const { data: restaurante } = useGetFeaturedMenuQuery(id)
 
   if (!restaurante) {
-    return <h3>Carregando...</h3>
+    return <Loader />
   }
 
   return (

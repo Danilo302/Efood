@@ -171,7 +171,7 @@ const Checkout = () => {
             onSubmit={async (e) => {
               e.preventDefault()
               await form.handleSubmit()
-              setReqSuccess(true)
+              setReqSuccess(isSuccess)
             }}
           >
             {isPayment ? (
