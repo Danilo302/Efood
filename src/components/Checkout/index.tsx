@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
+import InputMask from 'react-input-mask'
 import { CartContainer, Overlay, Sidebar } from '../Cart/styles'
 import { Btns, FormContainer } from './styles'
 import { RootReducer } from '../../store'
@@ -41,14 +42,24 @@ const Checkout = () => {
       recipientName: Yup.string()
         .min(5, 'O nome precisa ter pelo menos 5 caracteres')
         .required('O campo é obrigatório'),
-      address: Yup.string().required('O campo é obrigatório'),
+      address: Yup.string()
+        .min(5, 'O endereço precisa ter pelo menos 5 caracteres')
+        .required('O campo é obrigatório'),
       city: Yup.string().required('O campo é obrigatório'),
-      cep: Yup.string().required('O campo é obrigatório'),
+      cep: Yup.string()
+        .min(8, 'O campo precisa ter 8 caracteres')
+        .required('O campo é obrigatório'),
       number: Yup.string().required('O campo é obrigatório'),
-      complement: Yup.string().required('O campo é obrigatório'),
+      complement: Yup.string().optional(),
       nameCard: Yup.string().required('O campo é obrigatório'),
-      numberCard: Yup.string().required('O campo é obrigatório'),
-      cvv: Yup.string().required('O campo é obrigatório'),
+      numberCard: Yup.string()
+        .min(16, 'O campo precisa ter pelo menos 13 caracteres')
+        .max(19, 'O campo só pode ter no máximo 16 caracteres')
+        .required('O campo é obrigatório'),
+      cvv: Yup.string()
+        .min(3, 'O campo precisa ter 3 caracteres')
+        .max(3, 'O campo precisa ter 3 caracteres')
+        .required('O campo é obrigatório'),
       month: Yup.string().required('O campo é obrigatório'),
       year: Yup.string().required('O campo é obrigatório')
     }),
@@ -97,7 +108,8 @@ const Checkout = () => {
       form.errors.address ||
       form.errors.city ||
       form.errors.cep ||
-      form.errors.number
+      form.errors.number ||
+      Object.keys(form.touched).length === 0
     ) {
       alert(
         'Preencha todos os campos obrigatórios corretamente antes de prosseguir com o pagamento.'
@@ -113,16 +125,26 @@ const Checkout = () => {
     }
   }, [dispatch, isSuccess])
 
+  const [reqSuccess, setReqSuccess] = useState(false)
+
+  const requestComplete = () => {
+    dispatch(OpenCheckout())
+    setIsPayment(false)
+    form.resetForm()
+    setReqSuccess(false)
+  }
+
   return (
     <CartContainer className={isOpenCheckout ? 'is-open' : ''}>
       <Overlay
         onClick={() => {
           dispatch(OpenCheckout())
           setIsPayment(false)
+          if (isSuccess) setReqSuccess(false)
         }}
       />
       <Sidebar>
-        {isSuccess && data ? (
+        {reqSuccess && data && isPayment ? (
           <FormContainer>
             <h3>Pedido realizado - {data.orderId}</h3>
             <p>
@@ -140,18 +162,18 @@ const Checkout = () => {
               agradável experiência gastronômica. Bom apetite!
             </p>
 
-            <Btn
-              type="button"
-              onClick={() => {
-                dispatch(OpenCheckout())
-                setIsPayment(false)
-              }}
-            >
+            <Btn type="button" onClick={requestComplete}>
               Concluir
             </Btn>
           </FormContainer>
         ) : (
-          <form onSubmit={form.handleSubmit}>
+          <form
+            onSubmit={async (e) => {
+              e.preventDefault()
+              await form.handleSubmit()
+              setReqSuccess(true)
+            }}
+          >
             {isPayment ? (
               <FormContainer>
                 <h3>
@@ -172,7 +194,8 @@ const Checkout = () => {
                 <div>
                   <div>
                     <label htmlFor="numberCard">Número do cartão</label>
-                    <input
+                    <InputMask
+                      mask="9999 9999 9999 9999"
                       type="text"
                       id="numberCard"
                       name="numberCard"
@@ -185,7 +208,8 @@ const Checkout = () => {
 
                   <div className="small-container">
                     <label htmlFor="cvv">CVV</label>
-                    <input
+                    <InputMask
+                      mask={'999'}
                       type="text"
                       id="cvv"
                       name="cvv"
@@ -200,7 +224,8 @@ const Checkout = () => {
                 <div>
                   <div>
                     <label htmlFor="month">Mês de vencimento</label>
-                    <input
+                    <InputMask
+                      mask={'99'}
                       type="text"
                       id="month"
                       name="month"
@@ -213,7 +238,8 @@ const Checkout = () => {
 
                   <div>
                     <label htmlFor="year">Ano de vencimento</label>
-                    <input
+                    <InputMask
+                      mask={'99'}
                       type="text"
                       id="year"
                       name="year"
@@ -274,7 +300,8 @@ const Checkout = () => {
                 <div>
                   <div>
                     <label htmlFor="cep">CEP</label>
-                    <input
+                    <InputMask
+                      mask={'99999-999'}
                       type="text"
                       id="cep"
                       name="cep"
