@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 
 export const Overlay = styled.div`
   position: absolute;
@@ -26,17 +26,21 @@ export const CartContainer = styled.div`
 `
 
 export const Sidebar = styled.aside`
-  background-color: ${cores.red};
-  color: ${cores.branco};
+  background-color: ${colors.red};
+  color: ${colors.white};
   z-index: 1;
   padding: 32px 8px;
   max-width: 360px;
   width: 100%;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    max-width: 80%;
+  }
 `
 export const ItemCart = styled.li`
   display: flex;
-  background-color: ${cores.branco};
-  color: ${cores.red};
+  background-color: ${colors.white};
+  color: ${colors.red};
   padding: 8px;
   margin-bottom: 16px;
 
@@ -66,6 +70,25 @@ export const ItemCart = styled.li`
     height: 80px;
     margin-right: 8px;
     margin-bottom: 4px;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    > img {
+      margin-right: 4px;
+    }
+
+    > div {
+      align-items: center;
+      text-align: center;
+
+      div {
+        justify-content: center;
+      }
+
+      h4 {
+        font-size: 16px;
+      }
+    }
   }
 `
 export const Price = styled.div`

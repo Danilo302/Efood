@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 
 export const FooterContainer = styled.footer`
-  background-color: ${cores.branco};
-  color: ${cores.red};
+  background-color: ${colors.white};
+  color: ${colors.red};
   display: flex;
   flex-direction: column;
   align-items: center;

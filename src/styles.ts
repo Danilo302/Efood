@@ -1,8 +1,13 @@
 import { createGlobalStyle } from 'styled-components'
 
-export const cores = {
+export const colors = {
   red: '#e66767',
-  branco: '#FFEBD9'
+  white: '#FFEBD9'
+}
+
+export const breakpoints = {
+  desktop: '1024px',
+  tablet: '768px'
 }
 
 export const GlobalCss = createGlobalStyle`

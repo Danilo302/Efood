@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 
 export const FormContainer = styled.div`
   padding-top: 16px;
@@ -17,7 +17,7 @@ export const FormContainer = styled.div`
   }
 
   input {
-    background-color: ${cores.branco};
+    background-color: ${colors.white};
     border: 2px solid transparent;
     width: 100%;
     height: 32px;

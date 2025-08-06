@@ -1,16 +1,26 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 
 export const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: ${cores.red};
+  color: ${colors.red};
   padding: 40px 0 64px 0;
   font-weight: bold;
 
   h3 {
-    color: ${cores.red};
+    color: ${colors.red};
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+
+  span {
+    cursor: pointer;
   }
 `
 export const ImgContainer = styled.div`
@@ -30,5 +40,16 @@ export const ImgContainer = styled.div`
 
   h1 {
     padding-bottom: 32px;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    padding-left: 16px;
+    h1 {
+      font-size: 32px;
+    }
+    h2 {
+      font-size: 16px;
+      margin-bottom: 96px;
+    }
   }
 `

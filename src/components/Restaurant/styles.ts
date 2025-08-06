@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 
 export const Card = styled.div`
   max-width: 472px;
-  color: ${cores.red};
+  color: ${colors.red};
   position: relative;
 
   > img {
@@ -14,7 +14,7 @@ export const Card = styled.div`
   }
 `
 export const Info = styled.div`
-  border: 1px solid ${cores.red};
+  border: 1px solid ${colors.red};
   border-top: none;
   padding: 8px;
 

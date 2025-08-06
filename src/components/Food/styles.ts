@@ -1,10 +1,10 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 
 export const FoodItem = styled.li`
-  background-color: ${cores.red};
+  background-color: ${colors.red};
   max-width: 320px;
-  color: ${cores.branco};
+  color: ${colors.white};
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -40,8 +40,8 @@ export const Descripton = styled.div`
 export const Btn = styled.button`
   text-align: center;
   width: 100%;
-  background-color: ${cores.branco};
-  color: ${cores.red};
+  background-color: ${colors.white};
+  color: ${colors.red};
   border: none;
   font-size: 14px;
   font-weight: bold;
@@ -78,8 +78,8 @@ export const ModalContent = styled.div`
   padding: 0 0 32px 32px;
   display: flex;
   flex-direction: column;
-  background-color: ${cores.red};
-  color: ${cores.branco};
+  background-color: ${colors.red};
+  color: ${colors.white};
   position: relative;
   z-index: 1;
 
@@ -91,6 +91,11 @@ export const ModalContent = styled.div`
     img {
       cursor: pointer;
     }
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 90%;
+    padding: 0;
   }
 `
 export const ModelInfo = styled.div`
@@ -117,5 +122,22 @@ export const ModelInfo = styled.div`
 
   ${Btn} {
     width: 218px;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+
+    img {
+      width: 100%;
+      height: auto;
+      margin-right: 0;
+      margin-bottom: 16px;
+    }
+
+    ${Btn} {
+      width: 100%;
+    }
   }
 `
