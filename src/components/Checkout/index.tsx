@@ -1,15 +1,18 @@
 import { useDispatch, useSelector } from 'react-redux'
 import InputMask from 'react-input-mask'
-import { CartContainer, Overlay, Sidebar } from '../Cart/styles'
-import { Btns, FormContainer } from './styles'
-import { RootReducer } from '../../store'
-import { Btn } from '../Food/styles'
-import { OpenCheckout, clear, open } from '../../store/reducers/cart'
-import { formataPreco, getTotalPrice } from '../../utils'
 import { useEffect, useState } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+
+import { RootReducer } from '../../store'
+import { OpenCheckout, clear, open } from '../../store/reducers/cart'
+
+import { formataPreco, getTotalPrice } from '../../utils'
 import { usePurchaseMutation } from '../../services/api'
+
+import { CartContainer, Overlay, Sidebar } from '../Cart/styles'
+import { Btns, FormContainer } from './styles'
+import { Btn } from '../Food/styles'
 
 const Checkout = () => {
   const { isOpenCheckout, items } = useSelector(

@@ -1,10 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { Btn } from '../Food/styles'
-import { CartContainer, ItemCart, Overlay, Price, Sidebar } from './styles'
+
 import { RootReducer } from '../../store'
 import { close, OpenCheckout, remove } from '../../store/reducers/cart'
+
 import deleteCart from '../../assets/images/delete.png'
 import { formataPreco, getTotalPrice } from '../../utils'
+
+import { Btn } from '../Food/styles'
+import * as S from './styles'
 
 const Cart = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
@@ -24,14 +27,14 @@ const Cart = () => {
   }
 
   return (
-    <CartContainer className={isOpen ? 'is-open' : ''}>
-      <Overlay onClick={closeCart} />
-      <Sidebar>
+    <S.CartContainer className={isOpen ? 'is-open' : ''}>
+      <S.Overlay onClick={closeCart} />
+      <S.Sidebar>
         {items.length > 0 ? (
           <>
             <ul>
               {items.map((item) => (
-                <ItemCart key={item.id}>
+                <S.ItemCart key={item.id}>
                   <img src={item.foto} alt={item.nome} />
                   <div>
                     <h4>{item.nome}</h4>
@@ -44,13 +47,13 @@ const Cart = () => {
                       />
                     </div>
                   </div>
-                </ItemCart>
+                </S.ItemCart>
               ))}
             </ul>
-            <Price>
+            <S.Price>
               <p>Valor total</p>
               <span>{formataPreco(getTotalPrice(items))}</span>
-            </Price>
+            </S.Price>
             <Btn onClick={openCheckout}>Continuar com a entrega</Btn>
           </>
         ) : (
@@ -59,8 +62,8 @@ const Cart = () => {
             compra
           </p>
         )}
-      </Sidebar>
-    </CartContainer>
+      </S.Sidebar>
+    </S.CartContainer>
   )
 }
 

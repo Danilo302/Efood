@@ -1,5 +1,3 @@
-import { Cardapio } from '../pages/Home'
-
 export const getTotalPrice = (items: Cardapio[]) => {
   return items.reduce((acumulador, valorAtual) => {
     return (acumulador += valorAtual.preco)

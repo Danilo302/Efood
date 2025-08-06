@@ -1,17 +1,13 @@
 import { useState } from 'react'
-import {
-  Btn,
-  Descripton,
-  FoodItem,
-  Modal,
-  ModalContent,
-  ModelInfo
-} from './styles'
-import close from '../../assets/images/close.png'
 import { useDispatch } from 'react-redux'
+
 import { open, add } from '../../store/reducers/cart'
-import { Cardapio } from '../../pages/Home'
+
+import close from '../../assets/images/close.png'
+
 import { formataPreco } from '../../utils'
+
+import * as S from './styles'
 
 type Props = {
   item: Cardapio
@@ -30,19 +26,21 @@ const Food = ({ item }: Props) => {
 
   return (
     <>
-      <FoodItem>
+      <S.FoodItem>
         <img src={item.foto} />
-        <Descripton>
+        <S.Descripton>
           <div>
             <h4>{item.nome}</h4>
             <p>{item.descricao}</p>
           </div>
-          <Btn onClick={() => setIsVisible(true)}>Adicionar ao carrinho</Btn>
-        </Descripton>
-      </FoodItem>
+          <S.Btn onClick={() => setIsVisible(true)}>
+            Adicionar ao carrinho
+          </S.Btn>
+        </S.Descripton>
+      </S.FoodItem>
 
-      <Modal className={isVisible ? 'visivel' : ''}>
-        <ModalContent className="container">
+      <S.Modal className={isVisible ? 'visivel' : ''}>
+        <S.ModalContent className="container">
           <header>
             <img
               src={close}
@@ -50,20 +48,20 @@ const Food = ({ item }: Props) => {
               alt="Clique para fechar"
             />
           </header>
-          <ModelInfo>
+          <S.ModelInfo>
             <img src={item.foto} alt={item.nome} />
             <div>
               <h4>{item.nome}</h4>
               <p>{item.descricao}</p> <br />
               <p>Serve: {item.porcao}</p>
-              <Btn onClick={addCart}>
+              <S.Btn onClick={addCart}>
                 Adicionar ao carrinho - {formataPreco(item.preco)}
-              </Btn>
+              </S.Btn>
             </div>
-          </ModelInfo>
-        </ModalContent>
+          </S.ModelInfo>
+        </S.ModalContent>
         <div className="overlay" onClick={() => setIsVisible(false)}></div>
-      </Modal>
+      </S.Modal>
     </>
   )
 }

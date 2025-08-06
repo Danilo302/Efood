@@ -1,8 +1,9 @@
-import { FooterContainer, Icons } from './styles'
 import logo from '../../assets/images/logo.png'
 import intagram from '../../assets/images/instagram.png'
 import facebook from '../../assets/images/facebook.png'
 import twitter from '../../assets/images/twitter.png'
+
+import { FooterContainer, Icons } from './styles'
 
 const Footer = () => (
   <FooterContainer>

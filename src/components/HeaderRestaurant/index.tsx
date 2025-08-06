@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom'
-import logo from '../../assets/images/logo.png'
-import fundo from '../../assets/images/fundo2.png'
-import { HeaderContainer, ImgContainer } from './styles'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { open } from '../../store/reducers/cart'
 import { RootReducer } from '../../store'
+
+import logo from '../../assets/images/logo.png'
+import fundo from '../../assets/images/fundo2.png'
+
+import { HeaderContainer, ImgContainer } from './styles'
 
 type Props = {
   image: string

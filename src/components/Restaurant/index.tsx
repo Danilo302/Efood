@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom'
+
 import estrela from '../../assets/images/estrela.png'
-import { Card, Description, Info, Tags, Title } from './styles'
+
 import Tag from '../Tag'
+
+import { Card, Description, Info, Tags, Title } from './styles'
 
 type Props = {
   title: string

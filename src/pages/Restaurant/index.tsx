@@ -1,9 +1,10 @@
 import { useParams } from 'react-router-dom'
 
+import { useGetFeaturedMenuQuery } from '../../services/api'
+
 import HeaderRestaurant from '../../components/HeaderRestaurant'
 import ListFoods from '../../components/ListFoods'
 import Cart from '../../components/Cart'
-import { useGetFeaturedMenuQuery } from '../../services/api'
 import Checkout from '../../components/Checkout'
 import Loader from '../../components/Loader'
 

@@ -1,5 +1,5 @@
-import { Cardapio } from '../../pages/Home'
 import Food from '../Food'
+
 import { List } from './styles'
 
 type Props = {
